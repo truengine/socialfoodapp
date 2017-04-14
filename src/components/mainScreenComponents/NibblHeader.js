@@ -1,25 +1,25 @@
 import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 
-const Header = () => {
+const NibblHeader = () => {
     const { logoStyle, viewStyle, burgerStyle, searchStyle } = styles;
 
     return (
-        <View style = {viewStyle}>
+        <View style={viewStyle}>
             <TouchableOpacity>
                 <Image
-                    style = {burgerStyle}
-                    source={require('socialfoodapp/src/images/Burger.png')}
+                    style={burgerStyle}
+                    source={require('socialfoodapp/assets/images/Burger.png')}
                 />
             </TouchableOpacity>
             <Image
-                style = {logoStyle}
-                source={require('socialfoodapp/src/images/header_logo.png')}
+                style={logoStyle}
+                source={require('socialfoodapp/assets/images/header_logo.png')}
             />
             <TouchableOpacity>
                 <Image
-                    style = {searchStyle}
-                    source={require('socialfoodapp/src/images/Search_button.png')}
+                    style={searchStyle}
+                    source={require('socialfoodapp/assets/images/Search_button.png')}
                 />
             </TouchableOpacity>
         </View>
@@ -52,4 +52,4 @@ const styles = {
     }
 };
 
-export default Header;
+export { NibblHeader };

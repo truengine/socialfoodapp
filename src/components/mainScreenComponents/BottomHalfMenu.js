@@ -2,27 +2,34 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 const BottomHalfMenu = () => {
-    const { viewStyle, textStyle, textViewStyle, timerViewStyle, logoStyle, textStyleTime, timeTextViewStyle } = styles;
+    const {
+      viewStyle,
+       textStyle,
+        textViewStyle,
+         timerViewStyle,
+          logoStyle,
+           textStyleTime,
+            timeTextViewStyle } = styles;
 
     return (
         <View>
             <View style={textViewStyle}>
-                <Text style = { textStyle }>Time I've Got</Text>
+                <Text style={textStyle}>Time Ive Got</Text>
             </View>
-            <View style = { timerViewStyle }>
+            <View style={timerViewStyle}>
                 <TouchableOpacity>
                     <Image
-                        source={require('socialfoodapp/src/images/30mins_btn.png')}
+                        source={require('socialfoodapp/assets/images/30mins_btn.png')}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image
-                        source={require('socialfoodapp/src/images/45mins_btn.png')}
+                        source={require('socialfoodapp/assets/images/45mins_btn.png')}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image
-                        source={require('socialfoodapp/src/images/60mins_btn.png')}
+                        source={require('socialfoodapp/assets/images/60mins_btn.png')}
                     />
                 </TouchableOpacity>
             </View>
@@ -31,19 +38,19 @@ const BottomHalfMenu = () => {
                 <Text style={textStyleTime}>45 mins</Text>
                 <Text style={textStyleTime}>60 mins</Text>
             </View>
-            <View style = { viewStyle }>
+            <View style={viewStyle}>
                 <TouchableOpacity>
                     <Image
-                        style = {logoStyle}
-                        source={require('socialfoodapp/src/images/Findrecipes_btn.png')}
+                        style={logoStyle}
+                        source={require('socialfoodapp/assets/images/Findrecipes_btn.png')}
                     />
                 </TouchableOpacity>
             </View>
         </View>
-    )
+    );
 };
 
-styles = {
+const styles = {
     viewStyle: {
         alignItems: 'center',
         marginTop: 15
@@ -80,4 +87,4 @@ styles = {
 };
 
 
-export default BottomHalfMenu;
+export { BottomHalfMenu };
