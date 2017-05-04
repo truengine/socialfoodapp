@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
@@ -34,34 +34,42 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
+      <View style={styles.container1}>
+      <View style={styles.logoContainer}>
+          <Image
+              style={styles.logo}
+              source={require('../../assets/logo/splash.png')}
           />
-        </CardSection>
+      </View>
+        <Card>
+          <CardSection>
+            <Input
+              label="Email"
+              placeholder="email@gmail.com"
+              onChangeText={this.onEmailChange.bind(this)}
+              value={this.props.email}
+            />
+          </CardSection>
 
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </CardSection>
+          <CardSection>
+            <Input
+              secureTextEntry
+              label="Password"
+              placeholder="password"
+              onChangeText={this.onPasswordChange.bind(this)}
+              value={this.props.password}
+            />
+          </CardSection>
 
-        <Text style={styles.errorTextStyle}>
-          {this.props.error}
-        </Text>
+          <Text style={styles.errorTextStyle}>
+            {this.props.error}
+          </Text>
 
-        <CardSection>
-          {this.renderButton()}
-        </CardSection>
-      </Card>
+          <CardSection>
+            {this.renderButton()}
+          </CardSection>
+        </Card>
+      </View>
     );
   }
 }
@@ -71,7 +79,20 @@ const styles = {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
-  }
+  },
+  logoContainer: {
+      alignItems: 'center',
+      flexGrow: 1,
+      paddingTop: 50
+  },
+  container1: {
+      flex: 1,
+      backgroundColor: '#43A9D1'
+  },
+  logo: {
+      width: 141,
+      height: 43
+  },
 };
 
 const mapStateToProps = ({ auth }) => {
