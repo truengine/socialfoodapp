@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux';
 import AuthReducer from './AuthReducer';
+import * as recipesReducer from './recipes';
 
-export default combineReducers({
+const reducers = Object.assign({ auth: AuthReducer }, recipesReducer);
+export default combineReducers(
+  reducers
+);
+/*
+{
   auth: AuthReducer,
-});
+}*/

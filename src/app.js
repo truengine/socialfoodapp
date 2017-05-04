@@ -8,6 +8,8 @@ import reducers from './reducers';
 import Router from './Router';
 import SplashScreen from './components/splashScreen/splashScreen';
 
+import AppContainer from './containers/AppContainer';
+
 const styles = StyleSheet.create({
   splashScreenContainer: {
     backgroundColor: '#5A646D'

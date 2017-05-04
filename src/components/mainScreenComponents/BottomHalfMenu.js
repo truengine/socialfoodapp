@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 
-const BottomHalfMenu = () => {
+const BottomHalfMenu = ({ onPress }) => {
     const {
       viewStyle,
        textStyle,
@@ -39,7 +39,7 @@ const BottomHalfMenu = () => {
                 <Text style={textStyleTime}>60 mins</Text>
             </View>
             <View style={viewStyle}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onPress}>
                     <Image
                         style={logoStyle}
                         source={require('socialfoodapp/assets/images/Findrecipes_btn.png')}
