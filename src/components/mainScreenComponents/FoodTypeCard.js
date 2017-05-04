@@ -2,60 +2,66 @@ import React from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 
 const FoodTypeCard = () => {
-    const {backgroundStyle, buttonStyle, btnViewStyle, textViewStyle1, textViewStyle2, textStyle} = styles;
+  const {
+    backgroundStyle,
+     buttonStyle,
+     btnViewStyle,
+     textViewStyle1,
+     textViewStyle2,
+     textStyle } = styles;
 
     return (
         <View>
             <Image
                 style={backgroundStyle}
-                source={require('socialfoodapp/src/images/Menu_bg.png')}
+                source={require('socialfoodapp/assets/images/Menu_bg.png')}
             />
-            <View style={ btnViewStyle }>
+            <View style={btnViewStyle}>
                 <TouchableOpacity>
                     <Image
                         style={buttonStyle}
-                        source={require('socialfoodapp/src/images/Seafood_Button.png')}
+                        source={require('socialfoodapp/assets/images/Seafood_Button.png')}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image
                         style={buttonStyle}
-                        source={require('socialfoodapp/src/images/Meat_Button.png')}
+                        source={require('socialfoodapp/assets/images/Meat_Button.png')}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image
                         style={buttonStyle}
-                        source={require('socialfoodapp/src/images/Veg_button.png')}
+                        source={require('socialfoodapp/assets/images/Veg_button.png')}
                     />
                 </TouchableOpacity>
             </View>
-            <View style ={textViewStyle1}>
+            <View style={textViewStyle1}>
                 <Text style={textStyle}>Seafood</Text>
                 <Text style={textStyle}>Meat</Text>
                 <Text style={textStyle}>Vegetarian</Text>
             </View>
-            <View style={ btnViewStyle }>
+            <View style={btnViewStyle}>
                 <TouchableOpacity>
                     <Image
                         style={buttonStyle}
-                        source={require('socialfoodapp/src/images/Poultry_Button.png')}
+                        source={require('socialfoodapp/assets/images/Poultry_Button.png')}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image
                         style={buttonStyle}
-                        source={require('socialfoodapp/src/images/Dessert_Button.png')}
+                        source={require('socialfoodapp/assets/images/Dessert_Button.png')}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image
                         style={buttonStyle}
-                        source={require('socialfoodapp/src/images/Pasta_Button.png')}
+                        source={require('socialfoodapp/assets/images/Pasta_Button.png')}
                     />
                 </TouchableOpacity>
             </View>
-            <View style ={textViewStyle2}>
+            <View style={textViewStyle2}>
                 <Text style={textStyle}>Chicken</Text>
                 <Text style={textStyle}>Dessert</Text>
                 <Text style={textStyle}>Pasta</Text>
@@ -101,4 +107,4 @@ const styles = {
     }
 };
 
-export default FoodTypeCard;
+export { FoodTypeCard };
