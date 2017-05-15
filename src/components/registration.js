@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
 import { Button, Card, CardSection, Input, Spinner } from './common';
 
 class RegForm extends Component {
 
-	state = { email: '', password: '', firstname: '', lastname: '', error: '', loading: false };
+	state = { phone: '', email: '', password: '', firstname: '', lastname: '', error: '', loading: false };
 
 
 	onLoginSuccess() {
@@ -35,18 +35,31 @@ class RegForm extends Component {
 		}
 
 		return (
-			<Button onPress={this.onButtonPress.bind(this)}>
-			Register
-			</Button>
+			<TouchableOpacity
+      onPress={this.onButtonPress.bind(this)}
+      style={styles.loginContainer}
+      >
+      <Image
+          style={styles.logo}
+          source={require('../../assets/drawables/Signmeup_btn.png')}
+      />
+      </TouchableOpacity>
 			);
 	}
 	render() {
 		return (
+			<View style={styles.container1}>
+			<View style={styles.logoContainer}>
+					<Image
+							style={styles.logo}
+							source={require('../../assets/logo/splash.png')}
+					/>
+			</View>
 			<Card>
 				<CardSection>
 					<Input
 						label="First Name"
-						placeHolder="Joe"
+						placeHolder="Firstname"
 						value={this.state.firstname}
 						onChangeText={firstname => this.setState({ firstname })}
 					/>
@@ -54,9 +67,18 @@ class RegForm extends Component {
 				<CardSection>
 					<Input
 						label="Last Name"
-						placeHolder="Blogs"
+						placeHolder="Surname"
 						value={this.state.lastname}
 						onChangeText={lastname => this.setState({ lastname })}
+					/>
+				</CardSection>
+				<CardSection>
+					<Input
+						label="Phone Number"
+						placeHolder="Phone"
+						value={this.state.phone}
+						onChangeText={phone => this.setState({ phone })}
+						keyboardType="phone-pad"
 					/>
 				</CardSection>
 				<CardSection>
@@ -78,11 +100,12 @@ class RegForm extends Component {
 					/>
 				</CardSection>
 
-				<CardSection>
+				<CardSection style={{ backgroundColor: '#AC45CE' }}>
 					{this.renderButton()}
 				</CardSection>
 				<Text style={styles.errorTextStyle}>{this.state.error}</Text>
 			</Card>
+			</View>
 			);
 	}
 }
@@ -92,7 +115,25 @@ const styles = {
 		fontSize: 20,
 		alignSelf: 'center',
 		color: 'red'
-	}
+	},
+	logoContainer: {
+			alignItems: 'center',
+			flexGrow: 1,
+			paddingTop: 50
+	},
+	container1: {
+			flex: 1,
+			backgroundColor: '#AC45CE'
+	},
+	logo: {
+			width: 141,
+			height: 43
+	},
+	loginContainer: {
+		//marginTop = distance button is from previous object
+		alignItems: 'center',
+		flexGrow: 1,
+},
 };
 
 

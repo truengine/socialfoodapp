@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 
-const NibblHeader = () => {
+const NibblHeader = ({ onPress }) => {
     const { logoStyle, viewStyle, burgerStyle, searchStyle } = styles;
 
     return (
         <View style={viewStyle}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onPress}>
                 <Image
                     style={burgerStyle}
                     source={require('socialfoodapp/assets/images/Burger.png')}

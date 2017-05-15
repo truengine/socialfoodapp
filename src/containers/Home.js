@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactNative from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const {
   ScrollView,
@@ -8,6 +9,7 @@ const {
   TextInput,
   Image,
   Text,
+  TouchableOpacity,
   TouchableHighlight,
   StyleSheet,
 } = ReactNative;
@@ -25,6 +27,15 @@ class Home extends Component {
     });
   }
 
+  logoPress() {
+    Actions.main({ type: 'reset' });
+  }
+
+  imagePressed() {
+    console.log('Hi');
+    console.log(this);
+  }
+
   recipes() {
     return Object.keys(this.props.searchedRecipes).map(key => this.props.searchedRecipes[key])
   }
@@ -32,29 +43,40 @@ class Home extends Component {
   render() {
     return (
       <View style={styles.scene}>
-      <View style={styles.searchSection}>
-      <TextInput
-      style={styles.searchInput}
-      returnKeyType="search"
-      placeholder="Ingredients (comma delimited)"
-      onChangeText={(ingredientsInput) => this.setState({ ingredientsInput })}
-      value={this.state.ingredientsInput}
-      />
+        <View style={styles.searchSection}>
+        <TouchableOpacity style={styles.header_logob} onPress={this.logoPress.bind()}>
+        <Image style={styles.header_logo} source={require('../../assets/logo/splash.png')} />
+        </TouchableOpacity>
+          <TextInput
+            underlineColorAndroid='rgba(0,0,0,0)'
+            style={styles.searchInput}
+            returnKeyType="search"
+            placeholder="Ingredients Here"
+            onChangeText={(ingredientsInput) => this.setState({ ingredientsInput })}
+            value={this.state.ingredientsInput}
+            />
+
       <TouchableHighlight
       style={styles.searchButton}
       onPress={() => this.searchPressed()}
       >
-      <Text>Fetch Recipes</Text>
+      <Image
+          style={styles.searchStyle}
+          source={require('../../assets/images/Search_button.png')}
+      />
       </TouchableHighlight>
       </View>
         <ScrollView style={styles.scrollSection}>
           {!this.state.searching && this.recipes().map((recipe) => {
-            return (<View key={recipe.id} >
-              <Image source={ { uri: recipe.image } } style={styles.resultImage} />
-              <Text style={styles.resultText} >{recipe.title}</Text>
-              </View>)
+            return (
+              <TouchableHighlight key={recipe.id} onPress={() => this.imagePressed.bind(this)}>
+                <View>
+                  <Image source={ { uri: recipe.image } } style={styles.resultImage} />
+                  <Text style={styles.resultText} >{recipe.title}</Text>
+                </View>
+              </TouchableHighlight>)
           })}
-          {this.state.searching ? <Text>Searching...</Text> : null }
+          {this.state.searching ? <Text>Searching...</Text> : <Image style={styles.logo} source={require('../../assets/logo/splash.png')} />}
         </ScrollView>
       </View>
     )
@@ -62,34 +84,71 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
+  header_logob: {
+    marginTop: 25,
+    width: 70,
+    height: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  header_logo: {
+    width: 30,
+    height: 15,
+  },
+  logo: {
+      marginTop: 180,
+      width: 360,
+      height: 100
+  },
   scene: {
     flex: 1,
-    marginTop: 20
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   searchSection: {
-    height: 30,
+    height: 41,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     borderBottomColor: '#000',
     borderBottomWidth: 1,
     padding: 5,
+    flex: 0.1,
+    backgroundColor: '#C0C0C0'
   },
   scrollSection: {
-    flex: 0.8
+    flex: 1,
+    backgroundColor: '#D18343',
+    margin: 0
   },
   searchButton: {
     flex: 0.3,
+    height: 40,
+    marginBottom: 5,
+    borderWidth: 0,
+    borderColor: '#000'
   },
   searchInput: {
     flex: 0.7,
-    color: '#000'
+    color: '#000',
+    width: 200,
+    height: 40,
+    marginBottom: 2,
+    marginTop: 10
   },
   resultText: {
-    backgroundColor: '#000',
-    color: '#FFF',
+    backgroundColor: '#CCBA3E',
+    color: '#000',
     height: 20,
+    textAlign: 'center',
   },
   resultImage: {
     height: 150,
+    borderRadius: 2
+  },
+  searchStyle: {
+      height: 40,
+      width: 50,
+      marginLeft: 20
   }
 });
 

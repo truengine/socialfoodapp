@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { Card, CardSection, Input, Spinner } from './common';
 
 
 class LoginForm extends Component {
@@ -20,15 +21,29 @@ class LoginForm extends Component {
     this.props.loginUser({ email, password });
   }
 
+  regButtonPress() {
+    Actions.regScene();
+  }
+
+  continueGuest() {
+    Actions.main();
+  }
+
   renderButton() {
     if (this.props.loading) {
       return <Spinner size="large" />;
     }
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Login
-      </Button>
+      <TouchableOpacity
+      onPress={this.onButtonPress.bind(this)}
+      style={styles.loginContainer}
+      >
+      <Image
+          style={styles.logo}
+          source={require('../../assets/drawables/login_btn.png')}
+      />
+      </TouchableOpacity>
     );
   }
 
@@ -41,34 +56,50 @@ class LoginForm extends Component {
               source={require('../../assets/logo/splash.png')}
           />
       </View>
+      <Text style={styles.errorTextStyle}>
+      {this.props.error}
+      </Text>
+
         <Card>
           <CardSection>
             <Input
-              label="Email"
               placeholder="email@gmail.com"
               onChangeText={this.onEmailChange.bind(this)}
               value={this.props.email}
+              keyboardType="email-address"
             />
           </CardSection>
 
           <CardSection>
             <Input
               secureTextEntry
-              label="Password"
               placeholder="password"
               onChangeText={this.onPasswordChange.bind(this)}
               value={this.props.password}
             />
           </CardSection>
 
-          <Text style={styles.errorTextStyle}>
-            {this.props.error}
-          </Text>
 
-          <CardSection>
+          <CardSection style={{ backgroundColor: '#43A9D1' }}>
             {this.renderButton()}
           </CardSection>
         </Card>
+        <View style={styles.rowStyle2}>
+    <Text style={styles.text2} onPress={this.regButtonPress.bind(this)}>
+        Sign Up
+    </Text>
+
+
+    <Text style={styles.divider}>
+        |
+    </Text>
+    <Text style={styles.text1}>
+        Continue as
+    </Text>
+    <Text style={styles.text2} onPress={this.continueGuest.bind(this)}>
+        Guest
+    </Text>
+</View>
       </View>
     );
   }
@@ -93,6 +124,48 @@ const styles = {
       width: 141,
       height: 43
   },
+  loginContainer: {
+    //marginTop = distance button is from previous object
+    alignItems: 'center',
+    flexGrow: 1,
+},
+text1: {
+    textAlign: 'right',
+    paddingRight: 5,
+    fontFamily: 'gillsans',
+    color: 'white',
+    fontSize: 18
+},
+
+text2: {
+    textAlign: 'right',
+    paddingRight: 8,
+    fontFamily: 'gillsans',
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 18
+},
+
+divider: {
+    textAlign: 'right',
+    paddingRight: 8,
+    fontFamily: 'gillsans',
+    fontWeight: 'bold',
+    color: '#3BCC53',
+    fontSize: 20
+},
+
+rowStyle: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+
+},
+
+rowStyle2: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+
+}
 };
 
 const mapStateToProps = ({ auth }) => {
